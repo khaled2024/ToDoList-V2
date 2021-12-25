@@ -24,7 +24,7 @@ class MainViewController: UIViewController {
         
     }
     override func viewWillAppear(_ animated: Bool) {
-        title = "ToDo-List"
+        title = "ToDo-Notes"
         navigationItem.hidesBackButton = true
     }
     //MARK: - Functions
@@ -69,6 +69,14 @@ class MainViewController: UIViewController {
         self.modalPresentationStyle = .automatic
         self.present(addNoteVC, animated: true, completion: nil)
     }
+    @IBAction func exitBtnTapped(_ sender: UIBarButtonItem) {
+        let sb = UIStoryboard(name: "Main", bundle: nil)
+        let loginVC = sb.instantiateViewController(withIdentifier: "LoginViewController")as! LoginViewController
+        let navController = UINavigationController(rootViewController: loginVC)
+        navController.modalPresentationStyle = .fullScreen
+        navController.modalTransitionStyle = .flipHorizontal
+        present(navController, animated: true, completion: nil)
+    }
 }
 //MARK: - UITableViewDelegate
 extension MainViewController: UITableViewDelegate,UITableViewDataSource {
@@ -94,9 +102,10 @@ extension MainViewController: UITableViewDelegate,UITableViewDataSource {
         let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { (action, sourceView, completionHandler) in
             // Delete the row from the data source
             self.context.delete(self.noteArray[indexPath.row])
-            self.noteArray.remove(at: indexPath.row)
-            self.saveNote()
+            self.noteArray.remove(at: [indexPath.section][indexPath.row])
             self.tableView.deleteRows(at: [indexPath], with: .fade)
+
+            self.saveNote()
             // Call completion handler with true to indicate
             completionHandler(true)
         }

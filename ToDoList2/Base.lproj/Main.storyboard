@@ -3,6 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -416,10 +417,17 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="New Tester" id="l3A-sd-IAJ">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="1T8-GH-4RR">
+                        <barButtonItem key="leftBarButtonItem" systemItem="add" id="1T8-GH-4RR">
                             <color key="tintColor" red="0.29323088060000002" green="0.1173201336" blue="0.39494906229999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             <connections>
                                 <action selector="addNoteBtnTapped:" destination="Oby-Sy-O95" id="Fbk-s8-esi"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" id="Jzi-kb-J6T">
+                            <imageReference key="image" image="rectangle.portrait.and.arrow.right" catalog="system" symbolScale="large" renderingMode="template"/>
+                            <color key="tintColor" red="0.33091889419999998" green="0.13239890970000001" blue="0.4457105837" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <connections>
+                                <action selector="exitBtnTapped:" destination="Oby-Sy-O95" id="gHP-oi-pL9"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -491,15 +499,11 @@
                                 <color key="textColor" red="0.33091889419999998" green="0.13239890970000001" blue="0.4457105837" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="R9D-Pv-nSk">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="R9D-Pv-nSk">
                                 <rect key="frame" x="20" y="370.5" width="368" height="34"/>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <real key="value" value="15"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2eM-9d-Fgg">
                                 <rect key="frame" x="20" y="454.5" width="368" height="40"/>
@@ -558,6 +562,7 @@
         <image name="background 2" width="414" height="736"/>
         <image name="emailIcon" width="17" height="14.5"/>
         <image name="passwordIcon" width="13" height="16.5"/>
+        <image name="rectangle.portrait.and.arrow.right" catalog="system" width="128" height="108"/>
         <image name="userNameIcon" width="14" height="16.5"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
