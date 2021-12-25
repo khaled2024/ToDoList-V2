@@ -7,17 +7,20 @@
 
 import UIKit
 
-class ToDoCell: UITableViewCell {
-
+class ToDoCell: UITableViewCell{
+    
+    @IBOutlet weak var dateTimeLabel: UILabel!
+    @IBOutlet weak var NoteTextLabel: UILabel!
+    @IBOutlet weak var deleteBtn: UIButton!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
     
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+        
+    }
+    @IBAction func deleteBtnTapped(_ sender: UIButton) {
+    }
 }
