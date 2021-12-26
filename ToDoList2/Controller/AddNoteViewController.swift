@@ -45,8 +45,10 @@ class AddNoteViewController: UIViewController {
 
     //MARK: - actions
     @IBAction func saveBtnTapped(_ sender: UIButton) {
-        if let content = contentTF.text, !content.isEmpty, let date = DateTimeTF.text, !date.isEmpty{
+        if let content = contentTF.text, !content.isEmpty, let date = DateTimeTF.text, !date.isEmpty, let email = def.object(forKey: "email")as? String{
             let newNote = Note(context: self.context)
+            newNote.email = email
+            print(email)
             newNote.content = content
             newNote.date = date
             delegate?.passData(note: newNote)
@@ -54,6 +56,21 @@ class AddNoteViewController: UIViewController {
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //
 //
 //func currentDate(){

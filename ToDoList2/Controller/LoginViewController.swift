@@ -9,6 +9,7 @@ import UIKit
 import Firebase
 class LoginViewController: UIViewController {
     
+    //MARK: - Variable
     @IBOutlet weak var passwordTF: UITextField!
     @IBOutlet weak var emailTF: UITextField!
     
@@ -17,6 +18,7 @@ class LoginViewController: UIViewController {
         UserDefaults.standard.set(false, forKey: "isLoggedIn")
     }
     
+    //MARK: - Actions
     @IBAction func loginBtnTapped(_ sender: UIButton) {
         if let email = emailTF.text , !email.isEmpty , let password = passwordTF.text , !password.isEmpty{
             Auth.auth().signIn(withEmail: email, password: password) { authResult, error in
@@ -24,12 +26,12 @@ class LoginViewController: UIViewController {
                     print(error.localizedDescription)
                     self.getAlert(message: "\(error.localizedDescription)")
                 }else{
+                    // for userDefaults
+                    UserDefaults.standard.set(email, forKey: "email")
                     self.performSegue(withIdentifier: "LoginToMain", sender: self)
                 }
-                
             }
         }
-        
     }
     @IBAction func registerBtnTapped(_ sender: UIButton) {
         let register = storyboard?.instantiateViewController(withIdentifier: "SignViewController")as! SignViewController

@@ -15,19 +15,61 @@ class MainViewController: UIViewController {
     var noteArray = [Note]()
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
+    private let floatingBtn: UIButton = {
+        let button = UIButton(frame: CGRect(x: 0, y: 0, width: 60, height: 60))
+        button.backgroundColor = .systemPurple
+        let image = UIImage(systemName: "plus", withConfiguration: UIImage.SymbolConfiguration(pointSize: 32, weight: .medium))
+        button.setImage(image, for: .normal)
+        button.tintColor = .white
+        button.setTitleColor(.white, for: .normal)
+        // for radius & shadow
+//        button.layer.masksToBounds = true
+        button.layer.cornerRadius = 30
+        button.layer.shadowRadius = 10
+        button.layer.shadowOpacity = 0.4
+        return button
+    }()
+    
     //MARK: - lifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.addSubview(floatingBtn)
         setUp()
         UserDefaults.standard.set(true, forKey: "isLoggedIn")
-        loadNote()
-        
+        getNotes()
+//        loadNote()
     }
     override func viewWillAppear(_ animated: Bool) {
         title = "ToDo-Notes"
         navigationItem.hidesBackButton = true
     }
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        floatingBtn.frame = CGRect(x: view.frame.size.width - 80, y: view.frame.size.height - 100, width: 60, height: 60)
+        floatingBtn.addTarget(self, action: #selector(addNoteBtnTapped), for: .touchUpInside)
+    }
     //MARK: - Functions
+    @objc private func addNoteBtnTapped(){
+        let sb = UIStoryboard(name: "Main", bundle: nil)
+        let addNoteVC = sb.instantiateViewController(withIdentifier: "AddNoteViewController")as! AddNoteViewController
+        addNoteVC.delegate = self
+        self.modalPresentationStyle = .automatic
+        self.present(addNoteVC, animated: true, completion: nil)
+    }
+    
+    func getNotes(){
+        let email = UserDefultsManager.shared().email
+        print(email)
+        do{
+        let fetchRequest: NSFetchRequest<Note>
+        fetchRequest = Note.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "email LIKE %@", email)
+        noteArray = try context.fetch(fetchRequest)
+            print(noteArray)
+        }catch{
+            print(error)
+        }
+    }
     private func setUp(){
         tableView.delegate = self
         tableView.dataSource = self
@@ -61,14 +103,6 @@ class MainViewController: UIViewController {
         self.present(alert, animated: true, completion: nil)
     }
     //MARK: - Actions
-    
-    @IBAction func addNoteBtnTapped(_ sender: UIBarButtonItem) {
-        let sb = UIStoryboard(name: "Main", bundle: nil)
-        let addNoteVC = sb.instantiateViewController(withIdentifier: "AddNoteViewController")as! AddNoteViewController
-        addNoteVC.delegate = self
-        self.modalPresentationStyle = .automatic
-        self.present(addNoteVC, animated: true, completion: nil)
-    }
     @IBAction func exitBtnTapped(_ sender: UIBarButtonItem) {
         let sb = UIStoryboard(name: "Main", bundle: nil)
         let loginVC = sb.instantiateViewController(withIdentifier: "LoginViewController")as! LoginViewController
@@ -118,7 +152,21 @@ extension MainViewController: UITableViewDelegate,UITableViewDataSource {
 extension MainViewController: passDateDelegate{
     func passData(note: Note) {
         self.noteArray.append(note)
+        print(noteArray)
         self.saveNote()
     }
     
 }
+//
+//do{
+//
+//    let request = Note.fetchRequest() as NSFetchRequest<Note>
+//    let pred = NSPredicate(format:"email = \(email)", "193e00a75148b4006a451452c618ccec")
+//    request.predicate = pred
+//    self.noteArray =  try context.fetch(request)
+//    DispatchQueue.main.async {
+//        self.tableView.reloadData()
+//    }
+//}catch{
+//    print("Error for feltering data\(error)")
+//}

@@ -27,4 +27,16 @@ class UserDefultsManager{
             return def.bool(forKey: "isLoggedIn")
         }
     }
+    
+    var email: String{
+        set{
+            def.set(newValue, forKey: "email")
+        }
+        get{
+            guard def.object(forKey: "email") != nil else{
+                return "NoThing"
+            }
+            return def.string(forKey: "email")!
+        }
+    }
 }
