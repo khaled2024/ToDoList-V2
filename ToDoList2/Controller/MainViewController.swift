@@ -7,14 +7,14 @@
 
 import UIKit
 import CoreData
+import BLTNBoard
 
 class MainViewController: UIViewController {
     //MARK: - variables
     @IBOutlet weak var tableView: UITableView!
-    
+    var indexCell: IndexPath = []
     var noteArray = [Note]()
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    
     private let floatingBtn: UIButton = {
         let button = UIButton(frame: CGRect(x: 0, y: 0, width: 60, height: 60))
         button.backgroundColor = .systemPurple
@@ -23,11 +23,28 @@ class MainViewController: UIViewController {
         button.tintColor = .white
         button.setTitleColor(.white, for: .normal)
         // for radius & shadow
-//        button.layer.masksToBounds = true
+        // button.layer.masksToBounds = true
         button.layer.cornerRadius = 30
         button.layer.shadowRadius = 10
         button.layer.shadowOpacity = 0.4
         return button
+    }()
+    private lazy var boardManager: BLTNItemManager = {
+        let item = BLTNPageItem(title: "Delete Note")
+        item.image = UIImage(named: "delete")
+        item.actionButtonTitle = "Continue"
+        item.alternativeButtonTitle = "Maybe Later"
+        item.descriptionText = "would You like to Delete this Note"
+        item.actionHandler = {_ in
+            self.didTapBoardContinue(indexCell: self.indexCell)
+        }
+        item.alternativeHandler = {_ in
+            MainViewController.didTapBoardSkip()
+        }
+        item.appearance.actionButtonColor = .systemRed
+        item.appearance.alternativeButtonTitleColor = .gray
+        
+        return BLTNItemManager(rootItem: item)
     }()
     
     //MARK: - lifeCycle
@@ -37,11 +54,14 @@ class MainViewController: UIViewController {
         setUp()
         UserDefaults.standard.set(true, forKey: "isLoggedIn")
         getNotes()
-//        loadNote()
+        //        loadNote()
     }
     override func viewWillAppear(_ animated: Bool) {
+        print("iam main")
         title = "ToDo-Notes"
         navigationItem.hidesBackButton = true
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.systemPurple ]
     }
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
@@ -49,6 +69,17 @@ class MainViewController: UIViewController {
         floatingBtn.addTarget(self, action: #selector(addNoteBtnTapped), for: .touchUpInside)
     }
     //MARK: - Functions
+    func didTapBoardContinue(indexCell: IndexPath){
+        print("didTapBoardContinue")
+        context.delete(self.noteArray[indexCell.row])
+        self.noteArray.remove(at: indexCell.row)
+        self.tableView.deleteRows(at: [indexCell], with: .fade)
+        self.saveNote()
+        self.dismiss(animated: true, completion: nil)
+    }
+    static func didTapBoardSkip(){
+        print("didTapBoardSkip")
+    }
     @objc private func addNoteBtnTapped(){
         let sb = UIStoryboard(name: "Main", bundle: nil)
         let addNoteVC = sb.instantiateViewController(withIdentifier: "AddNoteViewController")as! AddNoteViewController
@@ -56,15 +87,14 @@ class MainViewController: UIViewController {
         self.modalPresentationStyle = .automatic
         self.present(addNoteVC, animated: true, completion: nil)
     }
-    
     func getNotes(){
         let email = UserDefultsManager.shared().email
         print(email)
         do{
-        let fetchRequest: NSFetchRequest<Note>
-        fetchRequest = Note.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "email LIKE %@", email)
-        noteArray = try context.fetch(fetchRequest)
+            let fetchRequest: NSFetchRequest<Note>
+            fetchRequest = Note.fetchRequest()
+            fetchRequest.predicate = NSPredicate(format: "email LIKE %@", email)
+            noteArray = try context.fetch(fetchRequest)
             print(noteArray)
         }catch{
             print(error)
@@ -95,7 +125,9 @@ class MainViewController: UIViewController {
     }
     func DeleteAlert(){
         let alert = UIAlertController(title: "Sorry", message: "Are you sur u want to delete this to do?", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "No", style: .default, handler: nil))
+        alert.addAction(UIAlertAction(title: "No", style: .default, handler: {_ in
+            self.dismiss(animated: true, completion: nil)
+        }))
         alert.addAction(UIAlertAction(title: "Yes", style: .destructive, handler: { _ in
             print("Yes, delete this ToDo")
             
@@ -106,10 +138,9 @@ class MainViewController: UIViewController {
     @IBAction func exitBtnTapped(_ sender: UIBarButtonItem) {
         let sb = UIStoryboard(name: "Main", bundle: nil)
         let loginVC = sb.instantiateViewController(withIdentifier: "LoginViewController")as! LoginViewController
-        let navController = UINavigationController(rootViewController: loginVC)
-        navController.modalPresentationStyle = .fullScreen
-        navController.modalTransitionStyle = .flipHorizontal
-        present(navController, animated: true, completion: nil)
+        loginVC.modalPresentationStyle = .fullScreen
+        loginVC.modalTransitionStyle = .flipHorizontal
+        self.present(loginVC, animated: true, completion: nil)
     }
 }
 //MARK: - UITableViewDelegate
@@ -130,17 +161,11 @@ extension MainViewController: UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 90
     }
-    
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        // 1- delete >>>>>>>>>>>
         let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { (action, sourceView, completionHandler) in
-            // Delete the row from the data source
-            self.context.delete(self.noteArray[indexPath.row])
-            self.noteArray.remove(at: [indexPath.section][indexPath.row])
-            self.tableView.deleteRows(at: [indexPath], with: .fade)
-
+            self.boardManager.showBulletin(above: self)
+            self.indexCell = indexPath
             self.saveNote()
-            // Call completion handler with true to indicate
             completionHandler(true)
         }
         deleteAction.image = UIImage(systemName: "trash")
@@ -155,18 +180,4 @@ extension MainViewController: passDateDelegate{
         print(noteArray)
         self.saveNote()
     }
-    
 }
-//
-//do{
-//
-//    let request = Note.fetchRequest() as NSFetchRequest<Note>
-//    let pred = NSPredicate(format:"email = \(email)", "193e00a75148b4006a451452c618ccec")
-//    request.predicate = pred
-//    self.noteArray =  try context.fetch(request)
-//    DispatchQueue.main.async {
-//        self.tableView.reloadData()
-//    }
-//}catch{
-//    print("Error for feltering data\(error)")
-//}

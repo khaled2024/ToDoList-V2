@@ -17,10 +17,11 @@
 		EA40DEEF2773D91B00678AD0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA40DEED2773D91B00678AD0 /* LaunchScreen.storyboard */; };
 		EA4148212775F14200D8DB3B /* ToDoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA41481F2775F14200D8DB3B /* ToDoCell.swift */; };
 		EA4148222775F14200D8DB3B /* ToDoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA4148202775F14200D8DB3B /* ToDoCell.xib */; };
+		EA6751ED277941F8000FABDD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA6751EC277941F8000FABDD /* SceneDelegate.swift */; };
+		EA6ABD0B277A8CF400AD86CE /* ButtonCards.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA6ABD0A277A8CF400AD86CE /* ButtonCards.swift */; };
 		EA8BFC052774EA21004DE357 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8BFC042774EA21004DE357 /* LoginViewController.swift */; };
 		EAB73F2027753E620082E624 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB73F1F27753E620082E624 /* MainViewController.swift */; };
 		EACF18A82777A2300078070D /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = EACF18A62777A2300078070D /* DataModel.xcdatamodeld */; };
-		EACF18AE2777B8250078070D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EACF18AD2777B8250078070D /* SceneDelegate.swift */; };
 		EAF9D0562775F6CB00AFBCE5 /* AddNoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF9D0552775F6CB00AFBCE5 /* AddNoteViewController.swift */; };
 		EAF9D0592775F7BB00AFBCE5 /* RoundedTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF9D0582775F7BB00AFBCE5 /* RoundedTool.swift */; };
 		EAF9D05B2775FD5700AFBCE5 /* UiView + alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF9D05A2775FD5700AFBCE5 /* UiView + alert.swift */; };
@@ -41,10 +42,11 @@
 		EA40DEF02773D91B00678AD0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EA41481F2775F14200D8DB3B /* ToDoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoCell.swift; sourceTree = "<group>"; };
 		EA4148202775F14200D8DB3B /* ToDoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ToDoCell.xib; sourceTree = "<group>"; };
+		EA6751EC277941F8000FABDD /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		EA6ABD0A277A8CF400AD86CE /* ButtonCards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonCards.swift; sourceTree = "<group>"; };
 		EA8BFC042774EA21004DE357 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		EAB73F1F27753E620082E624 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		EACF18A72777A2300078070D /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
-		EACF18AD2777B8250078070D /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		EAF9D0552775F6CB00AFBCE5 /* AddNoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNoteViewController.swift; sourceTree = "<group>"; };
 		EAF9D0582775F7BB00AFBCE5 /* RoundedTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedTool.swift; sourceTree = "<group>"; };
 		EAF9D05A2775FD5700AFBCE5 /* UiView + alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UiView + alert.swift"; sourceTree = "<group>"; };
@@ -83,7 +85,7 @@
 			isa = PBXGroup;
 			children = (
 				EA40DEE22773D91900678AD0 /* AppDelegate.swift */,
-				EACF18AD2777B8250078070D /* SceneDelegate.swift */,
+				EA6751EC277941F8000FABDD /* SceneDelegate.swift */,
 				EA40DEE12773D91900678AD0 /* ToDoList2 */,
 				EA40DEE02773D91900678AD0 /* Products */,
 				749AA49F24FF3F6B7E0ED4F4 /* Pods */,
@@ -104,7 +106,7 @@
 			children = (
 				EACF188227779F520078070D /* Manager */,
 				EAF9D0572775F79D00AFBCE5 /* Extension */,
-				EA8BFC072774EF2F004DE357 /* CoreModel */,
+				EA8BFC072774EF2F004DE357 /* Model */,
 				EA8BFC062774EF29004DE357 /* View */,
 				EA8BFC032774EA11004DE357 /* Controller */,
 				EA40DEE82773D91900678AD0 /* Main.storyboard */,
@@ -136,12 +138,12 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		EA8BFC072774EF2F004DE357 /* CoreModel */ = {
+		EA8BFC072774EF2F004DE357 /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				EACF18A62777A2300078070D /* DataModel.xcdatamodeld */,
 			);
-			path = CoreModel;
+			path = Model;
 			sourceTree = "<group>";
 		};
 		EACF188227779F520078070D /* Manager */ = {
@@ -157,6 +159,7 @@
 			children = (
 				EAF9D0582775F7BB00AFBCE5 /* RoundedTool.swift */,
 				EAF9D05A2775FD5700AFBCE5 /* UiView + alert.swift */,
+				EA6ABD0A277A8CF400AD86CE /* ButtonCards.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -283,9 +286,10 @@
 				EA40DEE72773D91900678AD0 /* SignViewController.swift in Sources */,
 				EA4148212775F14200D8DB3B /* ToDoCell.swift in Sources */,
 				EA40DEE32773D91900678AD0 /* AppDelegate.swift in Sources */,
+				EA6ABD0B277A8CF400AD86CE /* ButtonCards.swift in Sources */,
 				EAF9D0562775F6CB00AFBCE5 /* AddNoteViewController.swift in Sources */,
 				EAB73F2027753E620082E624 /* MainViewController.swift in Sources */,
-				EACF18AE2777B8250078070D /* SceneDelegate.swift in Sources */,
+				EA6751ED277941F8000FABDD /* SceneDelegate.swift in Sources */,
 				EA1C52BE27778EDB008D6ED7 /* UserDefultsManager.swift in Sources */,
 				EAF9D0592775F7BB00AFBCE5 /* RoundedTool.swift in Sources */,
 				EAF9D05B2775FD5700AFBCE5 /* UiView + alert.swift in Sources */,
@@ -440,6 +444,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ToDoList2/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "My To-Do";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -468,6 +473,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ToDoList2/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "My To-Do";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;

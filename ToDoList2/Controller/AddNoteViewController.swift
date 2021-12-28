@@ -16,6 +16,7 @@ class AddNoteViewController: UIViewController {
     @IBOutlet weak var contentTF: UITextField!
     var delegate: passDateDelegate?
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    let def = UserDefaults.standard
     
     //MARK: - lifeCycle
     override func viewDidLoad() {
@@ -42,7 +43,7 @@ class AddNoteViewController: UIViewController {
         formatter.timeStyle = .short
         return formatter.string(from: date)
     }
-
+    
     //MARK: - actions
     @IBAction func saveBtnTapped(_ sender: UIButton) {
         if let content = contentTF.text, !content.isEmpty, let date = DateTimeTF.text, !date.isEmpty, let email = def.object(forKey: "email")as? String{
@@ -57,43 +58,3 @@ class AddNoteViewController: UIViewController {
     }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//
-//
-//func currentDate(){
-//    //current date
-//    formatter.dateStyle = .medium
-//    formatter.timeStyle = .short
-//    DateTimeTF.text = formatter.string(from: date)
-//}
-//func createDatePicker(){
-//    let toolbar = UIToolbar()
-//    toolbar.sizeToFit()
-//    let done = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(donePressed))
-//    toolbar.setItems([done], animated: false)
-//    DateTimeTF.inputAccessoryView = toolbar
-//    DateTimeTF.inputView = picker
-//    picker.preferredDatePickerStyle = .wheels
-//    picker.frame.size = CGSize(width: 0, height: 200)
-//    picker.datePickerMode = .date
-//}
-//@objc func donePressed(){
-//    formatter.dateStyle = .medium
-//    formatter.timeStyle = .short
-//    let dateString = formatter.string(from: picker.date)
-//    DateTimeTF.text = "\(dateString)"
-//    self.view.endEditing(true)
-//}

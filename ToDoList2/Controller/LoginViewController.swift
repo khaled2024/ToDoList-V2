@@ -17,7 +17,6 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         UserDefaults.standard.set(false, forKey: "isLoggedIn")
     }
-    
     //MARK: - Actions
     @IBAction func loginBtnTapped(_ sender: UIButton) {
         if let email = emailTF.text , !email.isEmpty , let password = passwordTF.text , !password.isEmpty{
