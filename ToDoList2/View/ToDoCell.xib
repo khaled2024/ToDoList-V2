@@ -35,25 +35,20 @@
                         <color key="textColor" red="0.29323088060000002" green="0.1173201336" blue="0.39494906229999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JIf-0V-9cr">
-                        <rect key="frame" x="309" y="30" width="45" height="31"/>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="correct" translatesAutoresizingMaskIntoConstraints="NO" id="udL-Ur-eXY">
+                        <rect key="frame" x="314" y="30.5" width="30" height="30"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="45" id="X5Z-As-DCK"/>
+                            <constraint firstAttribute="height" constant="30" id="HzT-7y-mjD"/>
+                            <constraint firstAttribute="width" constant="30" id="VUX-Nm-8Cj"/>
                         </constraints>
-                        <state key="normal" title="Button"/>
-                        <buttonConfiguration key="configuration" style="plain" image="deleteIconCopy"/>
-                        <connections>
-                            <action selector="deleteBtnTapped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="b9a-S5-avD"/>
-                        </connections>
-                    </button>
+                    </imageView>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
                     <constraint firstItem="orl-ww-kqK" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="14" id="32w-0m-brv"/>
-                    <constraint firstItem="JIf-0V-9cr" firstAttribute="centerY" secondItem="Xnz-G2-aix" secondAttribute="centerY" id="Czz-hR-xaK"/>
+                    <constraint firstAttribute="trailing" secondItem="udL-Ur-eXY" secondAttribute="trailing" constant="30" id="Azk-qi-4nQ"/>
+                    <constraint firstItem="udL-Ur-eXY" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="EVT-Hu-grd"/>
                     <constraint firstItem="b3G-Qr-6OE" firstAttribute="leading" secondItem="Xnz-G2-aix" secondAttribute="trailing" constant="30" id="HiR-tl-A4U"/>
-                    <constraint firstItem="JIf-0V-9cr" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="30" id="Skg-Bp-4e3"/>
-                    <constraint firstAttribute="trailing" secondItem="JIf-0V-9cr" secondAttribute="trailing" constant="20" symbolic="YES" id="YDX-hp-aWS"/>
                     <constraint firstItem="Xnz-G2-aix" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="YQe-pJ-lPL"/>
                     <constraint firstItem="orl-ww-kqK" firstAttribute="leading" secondItem="Xnz-G2-aix" secondAttribute="trailing" constant="30" id="cmS-m8-BaE"/>
                     <constraint firstItem="Xnz-G2-aix" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" symbolic="YES" id="h8o-Dz-4IZ"/>
@@ -65,14 +60,14 @@
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <connections>
                 <outlet property="NoteTextLabel" destination="b3G-Qr-6OE" id="XBx-NB-Vcw"/>
+                <outlet property="correctImage" destination="udL-Ur-eXY" id="aW2-xs-SK3"/>
                 <outlet property="dateTimeLabel" destination="orl-ww-kqK" id="Re5-NX-wK8"/>
-                <outlet property="deleteBtn" destination="JIf-0V-9cr" id="ikB-vs-ia3"/>
             </connections>
             <point key="canvasLocation" x="228.98550724637684" y="79.352678571428569"/>
         </tableViewCell>
     </objects>
     <resources>
-        <image name="deleteIconCopy" width="14" height="20"/>
+        <image name="correct" width="50" height="50"/>
         <image name="todo" width="152" height="152"/>
     </resources>
 </document>

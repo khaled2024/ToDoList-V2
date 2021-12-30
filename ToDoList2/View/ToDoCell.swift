@@ -11,8 +11,7 @@ class ToDoCell: UITableViewCell{
     
     @IBOutlet weak var dateTimeLabel: UILabel!
     @IBOutlet weak var NoteTextLabel: UILabel!
-    @IBOutlet weak var deleteBtn: UIButton!
-    
+    @IBOutlet weak var correctImage: UIImageView!
     override func awakeFromNib() {
         super.awakeFromNib()
     }
@@ -21,6 +20,14 @@ class ToDoCell: UITableViewCell{
         super.setSelected(selected, animated: animated)
         
     }
-    @IBAction func deleteBtnTapped(_ sender: UIButton) {
+    func setUp(_ note: Note){
+        self.NoteTextLabel.text = note.content
+        self.dateTimeLabel.text = note.date
+        if note.done {
+            self.correctImage.isHidden = false
+        }else{
+            self.correctImage.isHidden = true
+        }
     }
+    
 }

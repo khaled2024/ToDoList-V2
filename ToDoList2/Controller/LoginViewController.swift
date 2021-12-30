@@ -17,6 +17,14 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         UserDefaults.standard.set(false, forKey: "isLoggedIn")
     }
+    func goToMain(){
+        let sb = UIStoryboard(name: "Main", bundle: nil)
+        let mainVC = sb.instantiateViewController(withIdentifier: "MainViewController")as! MainViewController
+        let navController = UINavigationController(rootViewController: mainVC)
+        navController.modalPresentationStyle = .fullScreen
+        navController.modalTransitionStyle = .flipHorizontal
+        self.present(navController, animated: true, completion: nil)
+    }
     //MARK: - Actions
     @IBAction func loginBtnTapped(_ sender: UIButton) {
         if let email = emailTF.text , !email.isEmpty , let password = passwordTF.text , !password.isEmpty{
@@ -27,7 +35,7 @@ class LoginViewController: UIViewController {
                 }else{
                     // for userDefaults
                     UserDefaults.standard.set(email, forKey: "email")
-                    self.performSegue(withIdentifier: "LoginToMain", sender: self)
+                    self.goToMain()
                 }
             }
         }
