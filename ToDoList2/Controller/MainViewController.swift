@@ -24,7 +24,7 @@ class MainViewController: UIViewController {
     var noteArray = [Note]()
     private let floatingBtn: UIButton = {
         let button = UIButton(frame: CGRect(x: 0, y: 0, width: 60, height: 60))
-        button.backgroundColor = .systemPurple
+        button.backgroundColor = UIColor(named: "tfColor")
         let image = UIImage(systemName: "plus", withConfiguration: UIImage.SymbolConfiguration(pointSize: 32, weight: .medium))
         button.setImage(image, for: .normal)
         button.tintColor = .white
@@ -90,7 +90,7 @@ class MainViewController: UIViewController {
         title = "ToDo-Notes"
         navigationItem.hidesBackButton = true
         navigationController?.navigationBar.prefersLargeTitles = true
-        navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.systemPurple ]
+        navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor(named: "tfColor") ?? .systemPurple ]
     }
     private func datePicker(){
         let datePicker = UIDatePicker()

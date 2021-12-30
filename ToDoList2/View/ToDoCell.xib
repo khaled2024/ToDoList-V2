@@ -3,6 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -16,26 +17,31 @@
                 <rect key="frame" x="0.0" y="0.0" width="374" height="91"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="todo" translatesAutoresizingMaskIntoConstraints="NO" id="Xnz-G2-aix">
-                        <rect key="frame" x="20" y="10.5" width="70" height="70"/>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="todoChange" translatesAutoresizingMaskIntoConstraints="NO" id="Xnz-G2-aix">
+                        <rect key="frame" x="20" y="18" width="70" height="55"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="70" id="PFk-Y4-JnG"/>
+                            <constraint firstAttribute="height" constant="55" id="PFk-Y4-JnG"/>
                             <constraint firstAttribute="width" constant="70" id="T9e-cL-dnu"/>
                         </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <real key="value" value="15"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date&amp;Time" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="orl-ww-kqK">
                         <rect key="frame" x="120" y="14" width="84.5" height="20.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" red="0.53214390738110473" green="0.21074664547644967" blue="0.73017633496262624" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="textColor" name="tfColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="first Note" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b3G-Qr-6OE">
                         <rect key="frame" x="120" y="55" width="74.5" height="21"/>
                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
-                        <color key="textColor" red="0.29323088060000002" green="0.1173201336" blue="0.39494906229999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="textColor" name="tfColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="correct" translatesAutoresizingMaskIntoConstraints="NO" id="udL-Ur-eXY">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="correctChange" translatesAutoresizingMaskIntoConstraints="NO" id="udL-Ur-eXY">
                         <rect key="frame" x="314" y="30.5" width="30" height="30"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="30" id="HzT-7y-mjD"/>
@@ -67,7 +73,10 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="correct" width="50" height="50"/>
-        <image name="todo" width="152" height="152"/>
+        <image name="correctChange" width="50" height="50"/>
+        <image name="todoChange" width="150" height="150"/>
+        <namedColor name="tfColor">
+            <color red="0.3529999852180481" green="0.14100000262260437" blue="0.47099998593330383" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
     </resources>
 </document>
